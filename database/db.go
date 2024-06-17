@@ -4,6 +4,7 @@ import (
 	"basic_trade/models/entity"
 	"fmt"
 	"log"
+	"os"
 
 	"github.com/joho/godotenv"
 	"gorm.io/driver/mysql"
@@ -22,14 +23,13 @@ func InitDB() {
 		log.Fatal("Error loading .env file")
 	}
 
-	// user := os.Getenv("DB_USER")
-	// password := os.Getenv("DB_PASS")
-	// host := os.Getenv("DB_HOST")
-	// port := os.Getenv("DB_PORT")
-	// dbname := os.Getenv("DB_NAME")
-	dsn_config := "mysql://root:xTGBLaukncSrEIkfwpcTukFfVjuJZsKo@viaduct.proxy.rlwy.net:49964/railway"
-	// dsn_config := fmt.Sprintf("mysql://%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", user, password, host, port, dbname)
-	// fmt.Println(dsn_config)
+	user := os.Getenv("DB_USER")
+	password := os.Getenv("DB_PASS")
+	host := os.Getenv("DB_HOST")
+	port := os.Getenv("DB_PORT")
+	dbname := os.Getenv("DB_NAME")
+	dsn_config := fmt.Sprintf("mysql://%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", user, password, host, port, dbname)
+	// dsn_config := "mysql://root:xTGBLaukncSrEIkfwpcTukFfVjuJZsKo@viaduct.proxy.rlwy.net:49964/railway"
 
 	// connect to DB
 	db, err = gorm.Open(mysql.Open(dsn_config), &gorm.Config{
