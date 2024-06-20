@@ -29,12 +29,8 @@ func InitDB() {
 	port := os.Getenv("DB_PORT")
 	dbname := os.Getenv("DB_NAME")
 	dsn_config := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", user, password, host, port, dbname)
-	fmt.Println(user, password, host, port, dbname)
-	fmt.Println(dsn_config, "dsn config")
-	// dsn_config := "mysql://root:xTGBLaukncSrEIkfwpcTukFfVjuJZsKo@viaduct.proxy.rlwy.net:49964/railway"
 
 	// connect to DB
-	// mysqlurl := os.Getenv("MYSQL_URL")
 	db, err = gorm.Open(mysql.Open(dsn_config), &gorm.Config{
 		Logger: logger.Default.LogMode(logger.Info),
 	})
