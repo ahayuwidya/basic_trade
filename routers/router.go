@@ -9,6 +9,8 @@ import (
 
 func StartApp() *gin.Engine {
 	router := gin.Default()
+	router.ForwardedByClientIP = true
+	router.SetTrustedProxies([]string{"127.0.0.1"})
 
 	authRouter := router.Group("/auth")
 	{
